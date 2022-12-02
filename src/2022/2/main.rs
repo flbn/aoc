@@ -3,6 +3,8 @@ use std::{str::FromStr, str::Split};
 
 mod misc; //input utils
 
+type Points = i32;
+
 #[derive(Debug, PartialEq, Eq)]
 enum Turn {
   Rock,
@@ -18,7 +20,7 @@ enum Game {
 }
 
 impl Game {
-  fn points(self) -> i32 {
+  fn points(self) -> Points {
     match &self {
       Game::Win => 6,
       Game::Tie => 3,
@@ -28,7 +30,7 @@ impl Game {
 }
 
 impl Turn {
-  fn points(self) -> i32 {
+  fn points(self) -> Points {
     match &self {
       Turn::Rock => 1,
       Turn::Paper => 2,
@@ -95,7 +97,7 @@ impl FromStr for Game {
 
 
 impl misc::File {
-  fn play (&self) -> (i32, i32) {
+  fn play (&self) -> (Points, Points) {
     self.content
     .trim()
     .lines()
@@ -108,7 +110,7 @@ impl misc::File {
   }
 }
 
-pub fn main() -> Result<(i32, i32), Error> {
+pub fn main() -> Result<(Points, Points), Error> {
   let file = misc::get_file();
   Ok(file.play())
 }
