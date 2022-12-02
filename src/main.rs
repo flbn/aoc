@@ -19,7 +19,10 @@ fn main() {
     let cli = Args::parse();
     match cli.year {
         2022 => match cli.day {
-            1 => twenty_twenty_two::one::main(),
+            1 => if let Ok((part1, part2)) = twenty_twenty_two::one::main() {
+              println!("{}", part1);
+              println!("{}", part2);
+            },
             2 => twenty_twenty_two::two::main(),
             _ => print!("no such day!"),
         },

@@ -1,3 +1,4 @@
+use anyhow::{Result, Error};
 use aoc::utils::input;
 
 type Calorie = u32;
@@ -20,19 +21,15 @@ impl File {
 }
 
 fn get_file() -> File {
-    let current_file = file!();
-    File::new(input::read_file(current_file))
+  let current_file = file!();
+  File::new(input::read_file(current_file))
 }
 
-pub fn main() {
-    let file = get_file();
-    let calories: Calories = file.parse_input_as_calories();
+pub fn main() -> Result<(Calorie, Calorie), Error> {
+  let file = get_file();
+  let calories: Calories = file.parse_input_as_calories();
 
-    let part_1 = get_most_cal(&calories);
-    let part_2 = get_top_three(&calories);
-
-    println!("part 1: {}", part_1);
-    println!("part 2: {}", part_2);
+  Ok((get_most_cal(&calories), get_top_three(&calories)))
 }
 
 fn get_most_cal(vec: &Calories) -> Calorie {
