@@ -53,11 +53,11 @@ elf 5:
 - collect sum of numbers (how big? default to an unsized and see if you can go smaller. rust will panic if fails to parse)
 
 - compare elf totals to find the elf carrying the most calories
-  - do we have to do that retrovactively? i guess we can sort after we collect but why don't we approach is by creating a vec and pushing the sums in order as we read the input?
-  - wait, no. too much work. just do the built in max() function for now lol
+  - do we have to do that retrovactively? i guess we can sort after we collect but why don't we approach it by creating a vec and pushing the sums in order (as we read the input)?
+  - *\*sees input file\** wait, no. too much work. just do the built in .max() function for now lol
 
 ### Part 2:
 
-- obviously, we sort -> find the top three -> collect the sum
-  - how do we sort though. why not traverse through the list -> keep an array of 3 max length and push/pop accordingly
+- obviously, sort -> find top three -> collect the sum. how?
+  - why not traverse through list -> keep an array of 3 max items and push/pop accordingly
   - or, use built in rust functions like max(), reverse(), collect(), and sum()?
