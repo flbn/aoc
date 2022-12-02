@@ -4,7 +4,7 @@ use std::{
 };
 
 fn cwd() -> PathBuf {
-    return env::current_dir().expect("failed to get current working directory");
+    env::current_dir().expect("failed to get current working directory")
 }
 
 pub fn read_file(file: &str) -> String {

@@ -1,7 +1,7 @@
 use aoc::utils::input;
 
-type Calories = Vec<u32>;
-
+type Calorie = u32;
+type Calories = Vec<Calorie>;
 struct File {
   content: String
 }
@@ -11,10 +11,10 @@ impl File {
     Self { content: c }
   }
 
-  fn parse_input_as_u32 (self) -> Calories {
+  fn parse_input_as_calories (self) -> Calories {
     self.content
       .split("\n\n")
-      .map(|elf| elf.lines().map(|x| x.parse::<u32>().unwrap()).sum())
+      .map(|elf| elf.lines().map(|x| x.parse::<Calorie>().expect("failed to parse elf calorie file input as a u32")).sum())
       .collect()
   }
 }
@@ -26,21 +26,21 @@ fn get_file() -> File {
 
 pub fn main() {
     let file = get_file();
-    let calories: Calories = file.parse_input_as_u32();
+    let calories: Calories = file.parse_input_as_calories();
 
-    let part_1: u32 = get_most_cal(calories.clone());
+    let part_1 = get_most_cal(calories.clone());
     let part_2 = get_top_three(calories);
 
     println!("part 1: {}", part_1);
     println!("part 2: {}", part_2);
 }
 
-fn get_most_cal(vec: Calories) -> u32 {
+fn get_most_cal(vec: Calories) -> Calorie {
   vec.iter().copied().max().unwrap_or_default()
 }
 
-fn get_top_three(vec: Calories) -> u32 {
-  let mut top = [u32::MIN; 3];
+fn get_top_three(vec: Calories) -> Calorie {
+  let mut top = [Calorie::MIN; 3];
   for calories in vec.iter() {
     let mut calories = *calories;
 
@@ -51,5 +51,5 @@ fn get_top_three(vec: Calories) -> u32 {
     }
   }
 
-  top.iter().sum::<u32>()
+  top.iter().sum::<Calorie>()
 }
