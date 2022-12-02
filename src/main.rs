@@ -20,6 +20,7 @@ fn main() {
     match cli.year {
         2022 => match cli.day {
             1 => twenty_twenty_two::one::main(),
+            2 => twenty_twenty_two::two::main(),
             _ => print!("no such day!"),
         },
         _ => print!("no such year!"),
