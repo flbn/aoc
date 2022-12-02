@@ -48,3 +48,10 @@
         - Scissors (3) - 1 = Paper (2) and you win
         - Rock (1) + 1 = Paper (2) and you lose
         - Scissors (3) + 1 = Rock (1) and you lose
+
+### Part 2:
+- Second column:
+  - how the round needs to end:
+    - X: you need to lose
+    - Y: you need to end the round in a draw
+    - Z: you need to win

@@ -5,7 +5,7 @@ pub struct File {
 }
 
 impl File {
-  fn new (c: String) -> File {
+  pub fn new (c: String) -> File {
     Self { content: c }
   }
 }
