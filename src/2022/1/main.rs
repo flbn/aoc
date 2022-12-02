@@ -28,18 +28,18 @@ pub fn main() {
     let file = get_file();
     let calories: Calories = file.parse_input_as_calories();
 
-    let part_1 = get_most_cal(calories.clone());
-    let part_2 = get_top_three(calories);
+    let part_1 = get_most_cal(&calories);
+    let part_2 = get_top_three(&calories);
 
     println!("part 1: {}", part_1);
     println!("part 2: {}", part_2);
 }
 
-fn get_most_cal(vec: Calories) -> Calorie {
+fn get_most_cal(vec: &Calories) -> Calorie {
   vec.iter().copied().max().unwrap_or_default()
 }
 
-fn get_top_three(vec: Calories) -> Calorie {
+fn get_top_three(vec: &Calories) -> Calorie {
   let mut top = [Calorie::MIN; 3];
   for calories in vec.iter() {
     let mut calories = *calories;
