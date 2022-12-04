@@ -12,16 +12,16 @@ impl File {
   pub fn part_1 (&self) -> u32 {
   let mut result = 0;
   let split: Vec<&str> = self.content.split('\n').into_iter().collect();
-  for item in split {
-    let len = item.len();
-    let first_part = item.split_at(len/2);
-    let thing: Vec<char> = first_part.0.chars().filter(|a| first_part.1.contains(*a)).collect();
-    let parsed = match thing[0].is_uppercase() {
-        true => thing[0] as u32 - 38,
-        false => thing[0] as u32 - 96
+  for line in split {
+    let len = line.len();
+    let half = line.split_at(len/2);
+    let chunk: Vec<char> = half.0.chars().filter(|a| half.1.contains(*a)).collect();
+    let priority = match chunk[0].is_uppercase() {
+        true => chunk[0] as u32 - 38,
+        false => chunk[0] as u32 - 96
     };
     
-    result += parsed;
+    result += priority;
   }
   result
   }
@@ -29,17 +29,17 @@ impl File {
   pub fn part_2 (&self) -> u32 {
     let mut result = 0;
     let split: Vec<&str> = self.content.split('\n').into_iter().collect();
-    for item in split.chunks(3) {
-      let thing: Vec<char> = item[0]
+    for line in split.chunks(3) {
+      let chunk: Vec<char> = line[0]
           .chars()
-          .filter(|a| item[1].contains(*a))
-          .filter(|a| item[2].contains(*a))
+          .filter(|a| line[1].contains(*a))
+          .filter(|a| line[2].contains(*a))
           .collect();
-      let parsed = match thing[0].is_uppercase() {
-          true => thing[0] as u32 - 38,
-          false => thing[0] as u32 - 96,
+      let priority = match chunk[0].is_uppercase() {
+          true => chunk[0] as u32 - 38,
+          false => chunk[0] as u32 - 96,
       };
-      result += parsed;
+      result += priority;
     }
     result
   }
