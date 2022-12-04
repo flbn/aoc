@@ -1,24 +1,30 @@
 use anyhow::{Result, Error};
-use std::{str::FromStr, str::Split};
 
 mod misc; //input utils
 
-pub fn main() -> Result<(Points, Points), Error> {
+pub fn main() -> Result<(u32, u32), Error> {
   let file = misc::get_file();
-  Ok()
+  let a: u32 = file.part_1();
+  let b: u32 = file.part_2();
+  Ok((a, b))
 }
 
-#[cfg(test)]
 mod tests {
-    use super::misc::File;
+  #[test]
+  fn test_1() {
+      use crate::twenty_twenty_two::three::misc::File;
+      let sample_data = String::from("vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw");
+      let file = File::new(sample_data); 
+      let part_1 = file.part_1();
+      assert_eq!(part_1, 157);
+  }
 
-    #[test]
-    fn test_a() {
-        assert_eq!();
-    }
-
-    #[test]
-    fn test_b() {
-      // assert_eq!);  
-    }
+  #[test]
+  fn test_2() {
+    use crate::twenty_twenty_two::three::misc::File;
+    let sample_data = String::from("vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw");
+    let file = File::new(sample_data); 
+    let part_2 = file.part_2();
+    assert_eq!(part_2, 70);
+  }
 }
