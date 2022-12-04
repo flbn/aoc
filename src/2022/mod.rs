@@ -6,3 +6,6 @@ pub mod two;
 
 #[path = "3/main.rs"]
 pub mod three;
+
+#[path = "4/main.rs"]
+pub mod four;
