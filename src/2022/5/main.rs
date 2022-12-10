@@ -3,7 +3,7 @@ use regex::Regex;
 
 mod misc; //input utils
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Crate {
   val: usize,
   origin: usize,
@@ -17,23 +17,29 @@ impl Crate {
 }
 
 pub fn a(mut crates: Vec<Vec<char>>, instructions: Vec<Crate>) -> String { 
-  println!("Crates: {:?}", crates);
-  println!("Cmds: {:?}", instructions);
-
   for instruction in instructions {
-      for _ in  0.. instruction.val {
-          // println!("Move from {} {:?} to {} {:?} {}", 
-          //     cmd.from, crates[cmd.from - 1], 
-          //     cmd.to, crates[cmd.to-1],
-          //     cmd.count );
-          let v = crates[instruction.origin - 1].pop().expect("Invalid move");
-          crates[instruction.dest - 1].push(v);
-      }
+    for _ in  0.. instruction.val {
+      let top = crates[instruction.origin - 1].pop().expect("failed to move character for top crate");
+      crates[instruction.dest - 1].push(top);
+    }
   }
-
-  let res: String = crates.iter().map(|stack| stack[stack.len()-1]).collect();
-  res
+  
+  crates.iter().map(|s| s[s.len() - 1]).collect()
 }
+
+pub fn b(mut crates: Vec<Vec<char>>, instructions: Vec<Crate>) -> String {
+  for instruction in instructions {
+    let mut top = Vec::new();
+    for _ in  0.. instruction.val {
+      top.push(crates[instruction.origin - 1].pop().expect("Invalid move"));            
+    }
+    top.reverse();
+    crates[instruction.dest - 1].append(&mut top);
+  }
+  
+  crates.iter().map(|s| s[s.len() - 1]).collect()
+}
+
 
 fn parse_input_as_crates (i: &str) -> (Vec<Vec<char>>, Vec<Crate>) {
   let regex_for_instruction = Regex::new(r"move (\d+) from (\d+) to (\d+)").expect("failed to compile a regex for the instruction");
@@ -68,14 +74,14 @@ fn parse_input_as_crates (i: &str) -> (Vec<Vec<char>>, Vec<Crate>) {
   (crates, instructions)
 }
 
-pub fn main() -> Result<String, Error> {
+pub fn main() -> Result<(String, String), Error> {
   let file = misc::get_file();
 
   let (crates, instructions) = parse_input_as_crates(&file.content);
-  let part_a = a(crates, instructions);
+  let part_a = a(crates.clone(), instructions.clone());
+  let part_b = b(crates, instructions);
 
-
-  Ok(part_a)
+  Ok((part_a, part_b))
 }
 
 #[cfg(test)]
@@ -100,8 +106,10 @@ move 1 from 1 to 2
     assert_eq!(part_a, "CMZ");
   }
 
-  // #[test]
-  // fn test_b() {
-  //   assert_eq!();  
-  // }
+  #[test]
+  fn test_b() {
+    let (crates, instructions) = parse_input_as_crates(SAMPLE_DATA);
+    let part_b = b(crates, instructions);
+    assert_eq!(part_b, "MCD");  
+  }
 }

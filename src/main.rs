@@ -35,9 +35,9 @@ fn main() {
               println!("{}", part1);
               println!("{}", part2);
             },
-            5 => if let Ok(part1) = twenty_twenty_two::five::main() {
+            5 => if let Ok((part1, part2)) = twenty_twenty_two::five::main() {
               println!("{}", part1);
-              // println!("{}", part2);
+              println!("{}", part2);
             },
             _ => print!("no such day!"),
         },
