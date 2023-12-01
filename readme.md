@@ -6,7 +6,7 @@ Usage: aoc [OPTIONS]
 
 Options:
 -y, --year <YEAR>
-Year of exercise [default: 2022]
+Year of exercise [default: 2023]
 -d, --day <DAY>
 Day of the month [default: 1] [default: 1]
 -h, --help
