@@ -1,5 +1,7 @@
 #[path = "2022/mod.rs"]
 mod twenty_twenty_two;
+#[path = "2023/mod.rs"]
+mod twenty_twenty_three;
 use clap::Parser;
 
 #[derive(Parser, Debug)]
@@ -41,6 +43,13 @@ fn main() {
             },
             _ => print!("no such day!"),
         },
+        2023 => match cli.day {
+          1 => if let Ok((part1, part2)) = twenty_twenty_three::one::main() {
+            println!("{}", part1);
+            println!("{}", part2);
+          },
+          _ => println!("no such day!"),
+        }
         _ => print!("no such year!"),
     }
 }
