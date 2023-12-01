@@ -6,8 +6,8 @@ use clap::Parser;
 #[command(author, version, about, long_about = None)]
 #[command(next_line_help = true)]
 struct Args {
-    /// Year of exercise
-    #[arg(short = 'y', long = "year", default_value_t = 2022)]
+    /// Year of exercise [default: 2023]
+    #[arg(short = 'y', long = "year", default_value_t = 2023)]
     year: u16,
 
     /// Day of the month [default: 1]
