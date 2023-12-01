@@ -16,4 +16,4 @@ Print version information
 ```
 
 ### run
-`cargo run -- -y 2022 -d 1`
+`cargo run -- -y 2023 -d 1`
