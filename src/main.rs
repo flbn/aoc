@@ -48,6 +48,10 @@ fn main() {
             println!("{}", part1);
             println!("{}", part2);
           },
+          2 => if let Ok((part1, part2)) = twenty_twenty_three::two::main() {
+            println!("{}", part1);
+            println!("{}", part2); 
+          },
           _ => println!("no such day!"),
         }
         _ => print!("no such year!"),
